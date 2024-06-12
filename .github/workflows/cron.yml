@@ -1,0 +1,22 @@
+name: Weekly Build
+
+on:
+  schedule:
+    - cron: '0 22 * * 3'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Build and Push Docker Image
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+        run: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker build -t your-dockerhub-username/spring-app:${GITHUB_SHA} .
+          docker push your-dockerhub-username/spring-app:${GITHUB_SHA}
