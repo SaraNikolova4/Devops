@@ -1,0 +1,14 @@
+mk\ukim\finki\wp\kol2022\g2\model\Course.class
+mk\ukim\finki\wp\kol2022\g2\service\impl\StudentServiceImpl.class
+mk\ukim\finki\wp\kol2022\g2\Kol2022Group2Application.class
+mk\ukim\finki\wp\kol2022\g2\model\Student.class
+mk\ukim\finki\wp\kol2022\g2\web\StudentController.class
+mk\ukim\finki\wp\kol2022\g2\model\exceptions\InvalidCourseIdException.class
+mk\ukim\finki\wp\kol2022\g2\config\DataInitializer.class
+mk\ukim\finki\wp\kol2022\g2\model\StudentType.class
+mk\ukim\finki\wp\kol2022\g2\service\impl\CourseServiceImpl.class
+mk\ukim\finki\wp\kol2022\g2\service\StudentService.class
+mk\ukim\finki\wp\kol2022\g2\repository\CourseRepository.class
+mk\ukim\finki\wp\kol2022\g2\service\CourseService.class
+mk\ukim\finki\wp\kol2022\g2\repository\StudentRepository.class
+mk\ukim\finki\wp\kol2022\g2\model\exceptions\InvalidStudentIdException.class

@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  db:
+    image: saranikolova54932/data-base
+    restart: always
+    container_name: Database
+    ports:
+      - "5432:5432"  # Променете го портата на стандардната за PostgreSQL
+    environment:
+      POSTGRES_DB: Kube
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: boris
+    networks:
+      - app-network
+
+  app:
+    container_name: SpringApp
+    image: saranikolova54932/spring-boot-app
+    ports:
+      - "8054:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/Kube  # Променете го портата и
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: boris
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_JPA_SHOW_SQL: true
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
