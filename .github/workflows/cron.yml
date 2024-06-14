@@ -23,8 +23,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       
       - name: Build and push Spring Dockerfile
-        uses: docker/build-push-action@v5
-         with:
+        run: |
           cd ../.. 
           docker build -t saranikolova54932/spring-app:${GITHUB_SHA} -f Kubernetes/Dockerfile .
           docker push saranikolova54932/spring-app:${GITHUB_SHA}
