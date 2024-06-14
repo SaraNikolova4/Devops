@@ -22,11 +22,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       
-      - name: Build and push flask_app Dockerfile
+      - name: Build and push Devops Dockerfile
         uses: docker/build-push-action@v5
         with:
           context: ./Kubernets
           push: true
           tags: |
-            saranikolova54932/flask_app:latest
-            saranikolova54932/flask_app:${{ github.run_number }}
+            saranikolova54932/spring_app:latest
+
