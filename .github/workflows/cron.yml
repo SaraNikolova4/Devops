@@ -2,7 +2,7 @@ name: Weekly Build
 
 on:
   schedule:
-    - cron: '30 23 * * 3'
+    - cron: '26 05 * * 5'
 
 jobs:
   build:
@@ -17,6 +17,6 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
         run: |
-          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
           docker build -t saranikolova54932/spring-app:${GITHUB_SHA} .
           docker push saranikolova54932/spring-app:${GITHUB_SHA}
