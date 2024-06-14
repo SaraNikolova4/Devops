@@ -3,8 +3,6 @@ name: Weekly Build
 on:
  push:
     branches: [ "main" ]
- schedule:
-    - cron: '02 07 * * 5'
  workflow_dispatch:
 
 jobs:
