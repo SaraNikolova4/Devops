@@ -24,6 +24,6 @@ jobs:
       
       - name: Build and push Spring Dockerfile
         run: |
-          cd ..
+          cd ../..
           docker build -t saranikolova54932/spring-app:${GITHUB_SHA} -f Kubernets/Dockerfile .
           docker push saranikolova54932/spring-app:${GITHUB_SHA}
