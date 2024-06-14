@@ -2,7 +2,7 @@ name: Weekly Build
 
 on:
   schedule:
-    - cron: '40 05 * * 5'
+    - cron: '02 07 * * 5'
   workflow_dispatch:
 
 jobs:
