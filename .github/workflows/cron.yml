@@ -24,8 +24,7 @@ jobs:
       
       - name: Build and push Spring Dockerfile
         uses: docker/build-push-action@v5
-        with:
-          context: ../.. 
-          file: ./Kubernetes/Dockerfile
-          push: true
-          tags: saranikolova54932/spring-app:${GITHUB_SHA}
+         with:
+          cd ../.. 
+          docker build -t saranikolova54932/spring-app:${GITHUB_SHA} -f Kubernetes/Dockerfile .
+          docker push saranikolova54932/spring-app:${GITHUB_SHA}
