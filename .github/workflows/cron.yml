@@ -2,7 +2,7 @@ name: Weekly Build
 
 on:
   schedule:
-    - cron: '26 05 * * 5'
+    - cron: '40 05 * * 5'
 
 jobs:
   build:
