@@ -2,11 +2,11 @@ version: '3.8'
 
 services:
   db:
-    image: saranikolova54932/database
+    image: saranikolova54932/data-base
     restart: always
     container_name: Database
     ports:
-      - "1234:1234"
+      - "5432:5432"
     environment:
       POSTGRES_DB: Kube
       POSTGRES_USER: postgres
@@ -16,13 +16,13 @@ services:
 
   app:
     container_name: SpringApp
-    image: saranikolova54932/spring
+    image: saranikolova54932/spring-boot-app
     ports:
-      - "8054:8080"
+      - "8080:8080"
     depends_on:
       - db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:1234/Kube
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/Kube
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: boris
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
