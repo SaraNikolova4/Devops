@@ -6,7 +6,7 @@ services:
     restart: always
     container_name: Database
     ports:
-      - "5432:5432"
+      - "1234:1234"
     environment:
       POSTGRES_DB: Kube
       POSTGRES_USER: postgres
