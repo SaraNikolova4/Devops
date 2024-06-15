@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   db:
-    image: saranikolova54932/data-base
+    image: saranikolova54932/database
     restart: always
     container_name: Database
     ports:
@@ -16,7 +16,7 @@ services:
 
   app:
     container_name: SpringApp
-    image: saranikolova54932/spring-boot-app
+    image: saranikolova54932/spring
     ports:
       - "8054:8080"
     depends_on:
