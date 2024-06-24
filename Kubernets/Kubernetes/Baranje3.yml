@@ -3,11 +3,14 @@ kind: Ingress
 metadata:
   name: spring-ingress
   namespace: app-namespace
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
 spec:
+  ingressClassName: traefik
   rules:
-    - host: localhost
+    - host: kii.finki.com
       http:
-       paths:
+        paths:
           - path: /
             pathType: Prefix
             backend:

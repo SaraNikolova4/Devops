@@ -1,35 +1,28 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: spring-config
+  name: springapp-config
   namespace: app-namespace
 data:
   application.properties: |
-    spring.datasource.url=jdbc:postgresql://db:5432/Kube
+    spring.datasource.url=jdbc:postgresql://postgre-service:1234/Kube
     spring.datasource.username=postgres
-    spring.datasource.driver-class-name=org.postgresql.Driver
-    spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
     spring.jpa.hibernate.ddl-auto=update
-    spring.jpa.show-sql=true
-    spring.jpa.properties.hibernate.format_sql=true
-
+    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 ---
-
 apiVersion: v1
 kind: Secret
 metadata:
-  name: spring-secret
+  name: springapp-secret
   namespace: app-namespace
 type: Opaque
 data:
   spring.datasource.password: Ym9yaXM=
-
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: spring-deployment
+  name: spring-app
   namespace: app-namespace
 spec:
   replicas: 1
@@ -42,7 +35,7 @@ spec:
         app: spring-pod
     spec:
       containers:
-        - name: spring-container
+        - name: spring
           image: saranikolova54932/spring-boot-app
           ports:
             - containerPort: 8080
@@ -52,20 +45,19 @@ spec:
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: spring-secret
+                  name: springapp-secret
                   key: spring.datasource.password
           volumeMounts:
-            - name: config-volume
+            - name: springapp-config-volume
               mountPath: /etc/config
               readOnly: true
-            - name: secret-volume
+            - name: springapp-secret-volume
               mountPath: /etc/secret
               readOnly: true
-
       volumes:
-        - name: config-volume
+        - name: springapp-config-volume
           configMap:
-            name: spring-config
-        - name: secret-volume
+            name: springapp-config
+        - name: springapp-secret-volume
           secret:
-            secretName: spring-secret
+            secretName: springapp-secret
